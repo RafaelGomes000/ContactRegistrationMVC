@@ -8,5 +8,7 @@ namespace ContactRegistrationMVC.Repository
         ContactModel ListId(int id);
         List<ContactModel> GetAll();
         ContactModel Create(ContactModel contact);
+        ContactModel Update(ContactModel contact);
+        bool Delete(int id);
     }
 }

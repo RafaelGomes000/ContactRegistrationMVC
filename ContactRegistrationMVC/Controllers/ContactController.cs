@@ -24,20 +24,35 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            var contact = _contactRepository.ListId(id);
+            return View(contact);
         }
 
-        public IActionResult Remove()
+        public IActionResult Remove(int id)
         {
-            return View();
+            var contact = _contactRepository.ListId(id);
+            return View(contact);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _contactRepository.Delete(id);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
             _contactRepository.Create(contact);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ContactModel contact)
+        {
+            _contactRepository.Update(contact);
             return RedirectToAction("Index");
         }
     }

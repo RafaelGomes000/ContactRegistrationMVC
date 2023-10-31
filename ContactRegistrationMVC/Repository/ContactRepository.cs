@@ -14,7 +14,12 @@ namespace ContactRegistrationMVC.Repository
             _dataContext = dataContext;
         }
 
-        List<ContactModel> IContactRepository.GetAll()
+        public ContactModel ListId(int id)
+        {
+            return _dataContext.Contact.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<ContactModel> GetAll()
         {
             return _dataContext.Contact.ToList();
         }
@@ -24,6 +29,33 @@ namespace ContactRegistrationMVC.Repository
             _dataContext.Contact.Add(contact);
             _dataContext.SaveChanges();
             return contact;
+        }
+
+        public ContactModel Update(ContactModel contact)
+        {
+            var contactDB = ListId(contact.Id);
+
+            if (contactDB == null) throw new System.Exception("ID not found!");
+
+            contactDB.Name = contact.Name;
+            contactDB.Email = contact.Email;
+            contactDB.Number = contact.Number;
+
+            _dataContext.Update(contactDB);
+            _dataContext.SaveChanges();
+            return contactDB;
+        }
+
+        public bool Delete(int id)
+        {
+            var contactDB = ListId(id);
+
+            if (contactDB == null) throw new System.Exception("ID not found!");
+
+            _dataContext.Contact.Remove(contactDB);
+            _dataContext.SaveChanges();
+
+            return true;
         }
     }
 }
