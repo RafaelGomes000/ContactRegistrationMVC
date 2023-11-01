@@ -38,22 +38,60 @@ namespace ContactRegistrationMVC.Controllers
 
         public IActionResult Delete(int id)
         {
-            _contactRepository.Delete(id);
-            return RedirectToAction("Index");
+            try
+            {
+                _contactRepository.Delete(id);
+                TempData["SuccessMessage"] = "Contact deleted";
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception e)
+            {
+                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
-            _contactRepository.Create(contact);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Create(contact);
+                    TempData["SuccessMessage"] = "Successfully registered";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (System.Exception e)
+            {
+                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Edit(ContactModel contact)
         {
-            _contactRepository.Update(contact);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Update(contact);
+                    TempData["SuccessMessage"] = "Contact updated";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (System.Exception e)
+            {
+                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

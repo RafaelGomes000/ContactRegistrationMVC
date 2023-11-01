@@ -11,14 +11,17 @@
     <div class="mb-3">
         <label for="name">Name</label>
         <input type="text" asp-for="Name" class="form-control" placeholder="Enter name">
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="email">E-mail</label>
         <input type="text" asp-for="Email" class="form-control" placeholder="Enter e-mail">
+        <span asp-validation-for="@Model.Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="number">Number</label>
         <input type="text" asp-for="Number" class="form-control" placeholder="Enter phone number">
+        <span asp-validation-for="@Model.Number" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary btn-block">Register</button>
