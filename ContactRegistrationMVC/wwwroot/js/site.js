@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 $(document).ready(function () {
-    $('#table-contacts').DataTable();
+    $('#table-contacts').DataTable( );
 })
 
 $('.close-alert').click(function () {
