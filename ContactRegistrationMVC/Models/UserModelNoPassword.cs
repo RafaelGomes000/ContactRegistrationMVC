@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ContactRegistrationMVC.Models
 {
-    public class UserModel
+    public class UserModelNoPassword
     {
         public int Id { get; set; }
 
@@ -20,10 +20,5 @@ namespace ContactRegistrationMVC.Models
 
         [Required(ErrorMessage = "Profile type is required")]
         public ProfileEnum? Profile { get; set; }
-
-        [Required(ErrorMessage = "Password is required")]
-        public string Password { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime? UpdateDate { get; set; }
     }
 }

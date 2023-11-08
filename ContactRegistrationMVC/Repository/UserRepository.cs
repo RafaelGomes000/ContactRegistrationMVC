@@ -42,6 +42,7 @@ namespace ContactRegistrationMVC.Repository
             userDB.Name = user.Name;
             userDB.Email = user.Email;
             userDB.Login = user.Login;
+            userDB.Profile = user.Profile;
             userDB.UpdateDate = DateTime.Now;
 
             _dataContext.Update(userDB);

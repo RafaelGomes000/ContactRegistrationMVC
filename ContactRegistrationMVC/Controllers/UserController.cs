@@ -24,6 +24,18 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
+        public IActionResult Edit(int id)
+        {
+            var user = _userRepository.ListId(id);
+            return View(user);
+        }
+
+        public IActionResult Remove(int id)
+        {
+            var user = _userRepository.ListId(id);
+            return View(user);
+        }
+
         [HttpPost]
         public IActionResult Create(UserModel user)
         {
@@ -41,6 +53,54 @@ namespace ContactRegistrationMVC.Controllers
             catch (System.Exception e)
             {
                 TempData["ErrorMessage"] = $"An error ocurred, details: {e.InnerException.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _userRepository.Delete(id);
+                TempData["SuccessMessage"] = "Contact deleted";
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception e)
+            {
+                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UserModelNoPassword userNoPassword)
+        {
+            try
+            {
+                UserModel user = null;
+                if (ModelState.IsValid)
+                {
+
+                    user = new UserModel()
+                    {
+                        Id = userNoPassword.Id,
+                        Name = userNoPassword.Name,
+                        Email = userNoPassword.Email,
+                        Login = userNoPassword.Login,
+                        Profile = userNoPassword.Profile
+                    };
+
+                    _userRepository.Update(user);
+                    TempData["SuccessMessage"] = "User updated";
+                    return RedirectToAction("Index");
+                }
+
+                return View(user);
+            }
+            catch (System.Exception e)
+            {
+                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
                 return RedirectToAction("Index");
             }
         }
