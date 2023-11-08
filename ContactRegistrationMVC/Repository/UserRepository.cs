@@ -17,18 +17,18 @@ namespace ContactRegistrationMVC.Repository
 
         public UserModel ListId(int id)
         {
-            return _dataContext.Users.FirstOrDefault(x => x.Id == id);
+            return _dataContext.User.FirstOrDefault(x => x.Id == id);
         }
 
         public List<UserModel> GetAll()
         {
-            return _dataContext.Users.ToList();
+            return _dataContext.User.ToList();
         }
 
         public UserModel Create(UserModel user)
         {
                 user.RegistrationDate = DateTime.Now;
-                _dataContext.Users.Add(user);
+                _dataContext.User.Add(user);
                 _dataContext.SaveChanges();
                 return user;
         }
@@ -55,7 +55,7 @@ namespace ContactRegistrationMVC.Repository
 
             if (userDB == null) throw new System.Exception("ID not found!");
 
-            _dataContext.Users.Remove(userDB);
+            _dataContext.User.Remove(userDB);
             _dataContext.SaveChanges();
 
             return true;

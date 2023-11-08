@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactRegistrationMVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231107200005_UsersTable")]
-    partial class UsersTable
+    [Migration("20231108153236_UserTable")]
+    partial class UserTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
