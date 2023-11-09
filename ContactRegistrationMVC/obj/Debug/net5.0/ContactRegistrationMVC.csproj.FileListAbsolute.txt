@@ -441,3 +441,5 @@ C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug
 C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\User\Create.cshtml.g.cs
 C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\User\Edit.cshtml.g.cs
 C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\User\Remove.cshtml.g.cs
+C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
+C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\Shared\_LayoutLoggedOut.cshtml.g.cs

@@ -15,6 +15,11 @@ namespace ContactRegistrationMVC.Repository
             _dataContext = dataContext;
         }
 
+        public UserModel FindByLogin(string login)
+        {
+            return _dataContext.User.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
         public UserModel ListId(int id)
         {
             return _dataContext.User.FirstOrDefault(x => x.Id == id);

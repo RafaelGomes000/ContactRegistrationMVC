@@ -46,7 +46,7 @@ namespace ContactRegistrationMVC.Controllers
             }
             catch (System.Exception e)
             {
-                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                TempData["ErrorMessage"] = $"An error has occurred, details: {e.Message}";
                 return RedirectToAction("Index");
             }
             
@@ -68,7 +68,7 @@ namespace ContactRegistrationMVC.Controllers
             }
             catch (System.Exception e)
             {
-                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                TempData["ErrorMessage"] = $"An error has occurred, details: {e.Message}";
                 return RedirectToAction("Index");
             }
         }
@@ -89,7 +89,7 @@ namespace ContactRegistrationMVC.Controllers
             }
             catch (System.Exception e)
             {
-                TempData["ErrorMessage"] = $"An error ocurred, details: {e.Message}";
+                TempData["ErrorMessage"] = $"An error has occurred, details: {e.Message}";
                 return RedirectToAction("Index");
             }
         }
