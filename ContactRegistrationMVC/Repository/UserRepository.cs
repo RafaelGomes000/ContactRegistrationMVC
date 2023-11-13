@@ -32,10 +32,11 @@ namespace ContactRegistrationMVC.Repository
 
         public UserModel Create(UserModel user)
         {
-                user.RegistrationDate = DateTime.Now;
-                _dataContext.User.Add(user);
-                _dataContext.SaveChanges();
-                return user;
+            user.RegistrationDate = DateTime.Now;
+            user.SetPasswordHash();
+            _dataContext.User.Add(user);
+            _dataContext.SaveChanges();
+            return user;
         }
 
         public UserModel Update(UserModel user)

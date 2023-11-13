@@ -1,4 +1,5 @@
 ﻿using ContactRegistrationMVC.Enums;
+using ContactRegistrationMVC.Helper;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,7 +29,12 @@ namespace ContactRegistrationMVC.Models
 
         public bool PasswordIsValid(string password)
         {
-            return Password == password;
+            return Password == password.GenerateHash();
+        }
+
+        public void SetPasswordHash()
+        {
+            Password = Password.GenerateHash();
         }
     }
 }
