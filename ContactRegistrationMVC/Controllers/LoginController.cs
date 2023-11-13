@@ -1,4 +1,5 @@
-﻿using ContactRegistrationMVC.Models;
+﻿using ContactRegistrationMVC.Helper;
+using ContactRegistrationMVC.Models;
 using ContactRegistrationMVC.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,14 +9,24 @@ namespace ContactRegistrationMVC.Controllers
     public class LoginController : Controller
     {
         private readonly IUserRepository _userRepository;
-        public LoginController(IUserRepository userRepository)
+        private readonly ISession _session;
+        public LoginController(IUserRepository userRepository, ISession session)
         {
             _userRepository = userRepository;
+            _session = session;
         }
 
         public IActionResult Index()
         {
+            //if user is already logged in, redirect to home page
+            if(_session.FindUserSession() != null) return RedirectToAction("Index", "Home");
             return View();
+        }
+
+        public IActionResult LogOut()
+        {
+            _session.RemoveUserSession();
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
@@ -32,13 +43,14 @@ namespace ContactRegistrationMVC.Controllers
                     {
                         if (user.PasswordIsValid(loginModel.Password))
                         {
+                            _session.CreateUserSession(user);
                             return RedirectToAction("Index", "Home");
                         }
 
-                        TempData["ErrorMessage"] = $"Incorrect password";
+                        TempData["ErrorMessage"] = $"Wrong password.";
                     }
 
-                    TempData["ErrorMessage"] = $"Incorrect login or password";
+                    TempData["ErrorMessage"] = $"Wrong username or password.";
                 }
                 return View("Index");
             }

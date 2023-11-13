@@ -1,4 +1,5 @@
-﻿using ContactRegistrationMVC.Models;
+﻿using ContactRegistrationMVC.Filters;
+using ContactRegistrationMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ContactRegistrationMVC.Controllers
 {
+    [PageForLoggedUser]
     public class HomeController : Controller
     {
         public IActionResult Index()

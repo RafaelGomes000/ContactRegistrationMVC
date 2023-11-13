@@ -1,9 +1,11 @@
-﻿using ContactRegistrationMVC.Models;
+﻿using ContactRegistrationMVC.Filters;
+using ContactRegistrationMVC.Models;
 using ContactRegistrationMVC.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactRegistrationMVC.Controllers
 {
+    [PageForLoggedUser]
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;

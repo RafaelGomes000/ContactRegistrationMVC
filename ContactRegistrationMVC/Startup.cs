@@ -1,7 +1,9 @@
 using ContactRegistrationMVC.Data;
+using ContactRegistrationMVC.Helper;
 using ContactRegistrationMVC.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,8 +30,18 @@ namespace ContactRegistrationMVC
         {
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer().AddDbContext<DataContext>(a => a.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<Helper.ISession, Session>();
+
+            services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +63,8 @@ namespace ContactRegistrationMVC
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
