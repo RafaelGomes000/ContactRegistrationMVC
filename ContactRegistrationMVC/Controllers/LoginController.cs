@@ -10,10 +10,12 @@ namespace ContactRegistrationMVC.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly ISession _session;
-        public LoginController(IUserRepository userRepository, ISession session)
+        private readonly IEmail _email;
+        public LoginController(IUserRepository userRepository, ISession session, IEmail email)
         {
             _userRepository = userRepository;
             _session = session;
+            _email = email;
         }
 
         public IActionResult Index()
@@ -79,9 +81,20 @@ namespace ContactRegistrationMVC.Controllers
                     if (user != null)
                     {
                         string newPassword = user.GenerateNewPassword();
-                        _userRepository.Update(user);
+                        string message = $"Your new password is: {newPassword}";
 
-                        TempData["SuccessMessage"] = $"We send you a new password in your registered email address.";
+                        bool emailSent = _email.Send(user.Email, "Contact System - New Password", message);
+
+                        if (emailSent)
+                        {
+                            _userRepository.Update(user);
+                            TempData["SuccessMessage"] = $"We will send a new password to your registered email address.";
+                        }
+                        else
+                        {
+                            TempData["ErrorMessage"] = $"We were unable to send the email, please, try again.";
+                        }
+
                         return RedirectToAction("Index", "Login");
                     }
 

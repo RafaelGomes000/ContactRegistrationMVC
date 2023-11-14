@@ -36,6 +36,7 @@ namespace ContactRegistrationMVC
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<Helper.ISession, Session>();
+            services.AddScoped<Helper.IEmail, Email>();
 
             services.AddSession(o =>
             {
