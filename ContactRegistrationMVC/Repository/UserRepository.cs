@@ -20,6 +20,11 @@ namespace ContactRegistrationMVC.Repository
             return _dataContext.User.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
         }
 
+        public UserModel FindByEmailAndLogin(string email, string login)
+        {
+            return _dataContext.User.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
+        }
+
         public UserModel ListId(int id)
         {
             return _dataContext.User.FirstOrDefault(x => x.Id == id);

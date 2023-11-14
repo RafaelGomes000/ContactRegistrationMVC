@@ -23,6 +23,11 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
         public IActionResult LogOut()
         {
             _session.RemoveUserSession();
@@ -51,6 +56,36 @@ namespace ContactRegistrationMVC.Controllers
                     }
 
                     TempData["ErrorMessage"] = $"Wrong username or password.";
+                }
+                return View("Index");
+            }
+            catch (Exception e)
+            {
+
+                TempData["ErrorMessage"] = $"An error has occurred, details: {e.InnerException.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult LinkToResetPassword(ResetPasswordModel resetPasswordModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UserModel user = _userRepository.FindByEmailAndLogin(resetPasswordModel.Email, resetPasswordModel.Login);
+
+                    if (user != null)
+                    {
+                        string newPassword = user.GenerateNewPassword();
+                        _userRepository.Update(user);
+
+                        TempData["SuccessMessage"] = $"We send you a new password in your registered email address.";
+                        return RedirectToAction("Index", "Login");
+                    }
+
+                    TempData["ErrorMessage"] = $"Wrong username or email.";
                 }
                 return View("Index");
             }

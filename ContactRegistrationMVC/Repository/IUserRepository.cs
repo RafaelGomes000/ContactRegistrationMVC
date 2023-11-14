@@ -6,6 +6,7 @@ namespace ContactRegistrationMVC.Repository
     public interface IUserRepository
     {
         UserModel FindByLogin(string login);
+        UserModel FindByEmailAndLogin(string email, string login);
         UserModel ListId(int id);
         List<UserModel> GetAll();
         UserModel Create(UserModel user);

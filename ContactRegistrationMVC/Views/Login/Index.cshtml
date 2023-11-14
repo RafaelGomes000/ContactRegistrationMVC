@@ -12,6 +12,14 @@
     </div>
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-light btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <form asp-controller="Login" asp-action="Enter" method="post">
     <div class="mb-3">
         <label for="login" class="form-label">Login</label>
@@ -24,5 +32,9 @@
         <span asp-validation-for="@Model.Password" class="text-danger"></span>
     </div>
    
+    <p class="mb-4 text-sm mx-auto">
+        <a asp-action="ResetPassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Forgot your password?</a>
+    </p>
+
     <button type="submit" class="btn btn-primary btn-block">Submit</button>
 </form>
