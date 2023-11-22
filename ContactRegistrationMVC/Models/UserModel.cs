@@ -37,6 +37,11 @@ namespace ContactRegistrationMVC.Models
             Password = Password.GenerateHash();
         }
 
+        public void SetNewPassword(string password)
+        {
+            Password = password.GenerateHash();
+        }
+
         public string GenerateNewPassword()
         {
             string newPassword = Guid.NewGuid().ToString().Substring(0, 8);

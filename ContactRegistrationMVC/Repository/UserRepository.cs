@@ -61,6 +61,25 @@ namespace ContactRegistrationMVC.Repository
             return userDB;
         }
 
+        public UserModel ChangePassword(ChangePasswordModel changePasswordModel)
+        {
+            UserModel userDB = ListId(changePasswordModel.Id);
+
+            if (userDB == null) throw new Exception("An error occurred, user not found!");
+
+            if (!userDB.PasswordIsValid(changePasswordModel.CurrentPassword)) throw new Exception("An error occurred, current password does not match!");
+
+            if(userDB.PasswordIsValid(changePasswordModel.NewPassword)) throw new Exception("An error occurred, new password must be different!");
+
+            userDB.SetNewPassword(changePasswordModel.NewPassword);
+            userDB.UpdateDate= DateTime.Now;
+
+            _dataContext.User.Update(userDB);
+            _dataContext.SaveChanges();
+
+            return userDB;
+        }
+
         public bool Delete(int id)
         {
             var userDB = ListId(id);

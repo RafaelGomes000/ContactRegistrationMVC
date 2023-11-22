@@ -11,6 +11,7 @@ namespace ContactRegistrationMVC.Repository
         List<UserModel> GetAll();
         UserModel Create(UserModel user);
         UserModel Update(UserModel user);
+        UserModel ChangePassword(ChangePasswordModel changePasswordModel);
         bool Delete(int id);
     }
 }
