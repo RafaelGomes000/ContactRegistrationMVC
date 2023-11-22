@@ -17,5 +17,7 @@ namespace ContactRegistrationMVC.Models
         [Required(ErrorMessage = "Number is required")]
         [Phone(ErrorMessage = "Number not valid!")]
         public string Number { get; set; }
+        public int? UserId { get; set; }
+        public UserModel User { get; set; }
     }
 }

@@ -19,9 +19,9 @@ namespace ContactRegistrationMVC.Repository
             return _dataContext.Contact.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<ContactModel> GetAll()
+        public List<ContactModel> GetAll(int userId)
         {
-            return _dataContext.Contact.ToList();
+            return _dataContext.Contact.Where(x => x.UserId == userId).ToList();
         }
 
         public ContactModel Create(ContactModel contact)
