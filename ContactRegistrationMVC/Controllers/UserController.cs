@@ -10,10 +10,12 @@ namespace ContactRegistrationMVC.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IContactRepository _contactRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository, IContactRepository contactRepository)
         {
             _userRepository = userRepository;
+            _contactRepository = contactRepository;
         }
         public IActionResult Index()
         {
@@ -36,6 +38,12 @@ namespace ContactRegistrationMVC.Controllers
         {
             var user = _userRepository.ListId(id);
             return View(user);
+        }
+
+        public IActionResult ListContactByUserId(int id)
+        {
+            List<ContactModel> contact = _contactRepository.GetAll(id);
+            return PartialView("_ContactUser", contact);
         }
 
         [HttpPost]

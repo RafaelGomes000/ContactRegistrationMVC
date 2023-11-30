@@ -447,3 +447,4 @@ C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug
 C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\Restricted\Index.cshtml.g.cs
 C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\Login\ResetPassword.cshtml.g.cs
 C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\ChangePassword\Index.cshtml.g.cs
+C:\workspace\Estudo\.net\ContactRegistrationMVC\ContactRegistrationMVC\obj\Debug\net5.0\Razor\Views\User\_ContactUser.cshtml.g.cs

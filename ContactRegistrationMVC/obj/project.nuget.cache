@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8Oo2DJYhXChjW6L9ToK4ZYqy323rAuoaXJPu7PDH37WSSfAczm47D5jgdP6ehQNZAoS3Rcd9lH2w3TIUOM2GlQ==",
+  "dgSpecHash": "8tNJPlSifuJ+8Nh+epL+QmX9yFqkrkTX+HvDroPmnB9RdTjzqtjExlez9MijQJ/MzwKNlGAtOEexeh4mvO5VDA==",
   "success": true,
   "projectFilePath": "C:\\workspace\\Estudo\\.net\\ContactRegistrationMVC\\ContactRegistrationMVC\\ContactRegistrationMVC.csproj",
   "expectedPackageFiles": [
@@ -132,5 +132,12 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nexus-prd/repository/nuget-group'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

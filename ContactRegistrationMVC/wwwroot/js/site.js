@@ -4,7 +4,21 @@
 // Write your JavaScript code.
 
 $(document).ready(function () {
-    $('#table-contacts').DataTable( );
+    $('#table-contacts').DataTable();
+
+    $('.btn-total-contacts').click(function () {
+        var userId = $(this).attr('user-id');
+
+        $.ajax({
+            type: 'GET',
+            url: '/User/ListContactByUserId/' + userId,
+            success: function (result) {
+                $("#contactUserList").html(result);
+                $('#modalContactUser').modal();
+                getDatatable('#table-contacts-user');
+            }
+        });
+    });
 })
 
 $('.close-alert').click(function () {

@@ -1,5 +1,6 @@
 ﻿using ContactRegistrationMVC.Data;
 using ContactRegistrationMVC.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,9 @@ namespace ContactRegistrationMVC.Repository
 
         public List<UserModel> GetAll()
         {
-            return _dataContext.User.ToList();
+            return _dataContext.User
+                .Include(x => x.Contacts)
+                .ToList();
         }
 
         public UserModel Create(UserModel user)
